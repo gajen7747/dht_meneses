@@ -18,7 +18,7 @@
                 padding-bottom: 20px;
             }
         </style>
-        <link rel="stylesheet" href="css/bootswatch-themes/darkly.css">
+        <link rel="stylesheet" href="css/bootswatch-themes/flatly.css">
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
