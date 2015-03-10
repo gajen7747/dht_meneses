@@ -29,9 +29,9 @@ $(document).ready(function () {
         });
     });
 
-    timedLoadColor();
+    //timedLoadColor();
 
-    timerLoadSensor();
+    //timerLoadSensor();
 
 
 });

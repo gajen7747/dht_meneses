@@ -13,21 +13,19 @@ a.btn{
 
 @media (max-width: 768px) {
     h2{
-        display:none;
-        visibility: hidden;
-
     }
-
+    .config-label{
+        display:none;
+    }
     a.btn{
         display:block;
         max-width:180px        
-    }    
+    }   
+
 }
 
 @media (max-width: 480px) {
     h2,.explanation{
-        display:none;
-        visibility: hidden;
     }
 }
 
