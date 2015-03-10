@@ -43,7 +43,17 @@ void loop() {
     Serial.println("Failed to read from DHT sensor!");
     return;
   }
-
+    
+  String jsonValue = "{\"t\":\"";
+  jsonValue = jsonValue + (int) t;
+  jsonValue = jsonValue + "\",\"h\":";
+  jsonValue = jsonValue + (int) h;
+  jsonValue = jsonValue + "\"}";
+  String pvcloudCommand = "node /home/root/pvcloud_api.js action='add_value' value='"+jsonValue+"' value_type='JSON_TH' value_label='DHT11_READING' captured_datetime='2015-03-09+21:00' > log.txt";
+  Serial.println(pvcloudCommand);
+  
+  system ( pvcloudCommand.buffer );
+  
   // Compute heat index
   // Must send in temp in Fahrenheit!
   float hi = dht.computeHeatIndex(f, h);
