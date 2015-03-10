@@ -21,7 +21,7 @@ DHT dht(DHTIN,DHTOUT, DHTTYPE);
 void setup() {
   delay(3000);
   Serial.begin(9600); 
-  Serial.println("DHTxx test!");
+  Serial.println("DHT11 test!");
  
   dht.begin();
 }
