@@ -4,38 +4,44 @@ $(document).ready(function () {
         $("#btnStop").show();
         stopFlag = false;
         beginCapture();
-    });
+    }).removeAttr("disabled").text("BEGIN");
+    
+    
 
     $("#btnStop").click(function () {
         stopFlag = true;
         $("#btnBegin").show();
         $("#btnStop").hide();
+        $("#imgClock").hide();
     });
 
 });
 
 var stopFlag = false;
 function beginCapture() {
+    $("#imgClock").hide();
     if (!stopFlag) {
         var time = $("#txtCheckTime").val();
 
         $("#val_T").html("...");
         $("#val_H").html("...");
-        $("#btnStop").text("STOP");
+        $("#created_datetime").html("loading...");
         
         GetPVCLOUDValue(function (response) {
             processValue(response);
+            $("#imgClock").show();
             setTimeout(beginCapture, time * 1000);
-            $("#btnStop").text("STOP (waiting)");
         });
     }
 }
 
 function processValue(response) {
     var value = JSON.parse(response.vse_value);
+    var created_datetime = response.created_datetime;
     if (value) {
         $("#val_T").html(value.t);
         $("#val_H").html(value.h);
+        $("#created_datetime").html(created_datetime);
     }
     console.log(value);
 }

@@ -76,12 +76,14 @@
                         <p class="input-group" style="width:100%">
                             <label class="input-group-addon" for="txtCheckTime" style="width:200px; text-align: right">Check time in seconds:   </label>
                             <input class="form-control" type="number" min="5" max="60" value="10"  id="txtCheckTime">
-                            <label class="input-group-addon" for="txtCheckTime" style="width:1em; text-align: right; color:blue"><i class="glyphicon glyphicon-time"></i></label>
+                            <label class="input-group-addon" for="txtCheckTime" style="width:1em; text-align: right; color:blue">
+                                <i class="glyphicon glyphicon-time"></i>
+                            </label>
                         </p>  
                     </form>
                     <p>
-                        <a id="btnBegin" class="btn btn-success pull-right" role="button" >Begin</a>
-                        <a id="btnStop"  class="btn btn-danger pull-right" role="button" >STOP</a>
+                        <a id="btnBegin" class="btn btn-success pull-right" role="button" disabled >please wait...</a>
+                        <img id="imgClock" class="pull-left" src="img/p19498-1231353003.gif" style="display:none; margin-left:20px; margin-top:5px; width:2em;"><a id="btnStop"  class="btn btn-danger pull-right" role="button" >STOP</a>
                     </p>
                 </div>
                 <div class="col-md-4">
@@ -99,7 +101,8 @@
                             <br>
                             <i class="glyphicon glyphicon-fire" style="color:green; font-size: 3em"></i><br>
                             <span>TEMPERATURE</span>
-                        </div>              
+                        </div>   
+                        <div class="small" id="created_datetime"></div>
                     </div>
                 </div>
             </div>
