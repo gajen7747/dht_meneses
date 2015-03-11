@@ -11,6 +11,10 @@ a.btn{
 
 }
 
+#btnStop {
+    display:none;
+}
+
 @media (max-width: 768px) {
     h2{
     }

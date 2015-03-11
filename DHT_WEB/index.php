@@ -79,7 +79,10 @@
                             <label class="input-group-addon" for="txtCheckTime" style="width:1em; text-align: right; color:blue"><i class="glyphicon glyphicon-time"></i></label>
                         </p>  
                     </form>
-                    <p><a id="btnCheck"  class="btn btn-success pull-right" role="button" >Begin</a></p>
+                    <p>
+                        <a id="btnBegin" class="btn btn-success pull-right" role="button" >Begin</a>
+                        <a id="btnStop"  class="btn btn-danger pull-right" role="button" >STOP</a>
+                    </p>
                 </div>
                 <div class="col-md-4">
                     <h2>Visualization</h2>
@@ -87,12 +90,13 @@
 
                     <div class="panel panel-body panel-info" style="text-align: center">
                         <div class="col-md-6">
-                            <span style="font-size:3em">76</span><br>
+                            <span id="val_H" style="font-size:3em">76</span>%<br>
                             <i class="glyphicon glyphicon-tint" style="color:green; font-size: 3em"></i><br>
                             <span>HUMIDITY</span>
                         </div>
                         <div class="col-md-6">
-                            <span style="font-size:3em">28 C</span><br>
+                            <span id="val_T" style="font-size:3em">28</span> C
+                            <br>
                             <i class="glyphicon glyphicon-fire" style="color:green; font-size: 3em"></i><br>
                             <span>TEMPERATURE</span>
                         </div>              
