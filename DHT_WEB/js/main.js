@@ -9,20 +9,20 @@ $(document).ready(function () {
  * Configures behavior of each actionable control in the page.
  * @returns {undefined}
  */
-function configureEvents(){
+function configureEvents() {
     $("#btnBegin").click(function () {
         $("#btnBegin").hide();
         $("#btnStop").show();
         stopFlag = false;
         beginCapture();
     }).removeAttr("disabled").text("BEGIN");
-    
+
     $("#btnStop").click(function () {
         stopFlag = true;
         $("#btnBegin").show();
         $("#btnStop").hide();
         $("#imgClock").hide();
-    });    
+    });
 }
 
 /**
@@ -43,9 +43,9 @@ function beginCapture() {
         $("#val_T").html("...");
         $("#val_H").html("...");
         $("#created_datetime").html("loading...");
-        
+
         GetPVCLOUDValue(function (response) {
-            processValue(response);
+            processResponse(response);
             $("#imgClock").show();
             setTimeout(beginCapture, time * 1000);
         });
@@ -57,15 +57,63 @@ function beginCapture() {
  * @param {object} response
  * @returns {undefined}
  */
-function processValue(response) {
+function processResponse(response) {
     var value = JSON.parse(response.vse_value);
     var created_datetime = response.created_datetime;
     if (value) {
         $("#val_T").html(value.t);
         $("#val_H").html(value.h);
-        $("#created_datetime").html(created_datetime);
+
+
+        var now = new Date();
+        var createdDateObj = new Date(created_datetime);
+        createdDateObj.setHours(createdDateObj.getHours() + 1);
+        console.log(now);
+
+        console.log(createdDateObj);
+        $("#created_datetime").html(createdDateObj);
+
+        var diffsec = (now - createdDateObj) / 1000;
+
+        if (diffsec > 60) {
+            $("#created_datetime").css("color", "red");
+        } else {
+            $("#created_datetime").css("color", "green");
+        }
+        
+        processWarnings();
+        console.log(diffsec);
+
     }
     console.log(value);
+}
+
+function processWarnings() {
+    var tempWarningValue = 1* $("#txtWarning_T_Trigger").val();
+    var tempAlertValue = 1* $("#txtAlert_T_Trigger").val();
+    var humWarningValue = 1* $("#txtWarning_H_Trigger").val();
+    var humAlertValue = 1* $("#txtAlert_H_Trigger").val();
+    var currentTemp = 1 *  $("#val_T").text();
+    var currentHum = 1 * $("#val_H").text();
+
+    console.log({currentTemp:currentTemp, currentHum:currentHum});
+    console.log({tempWarning: tempWarningValue, tempAlert: tempAlertValue, humWarning: humWarningValue, humAlert: humAlertValue});
+    
+    if (currentTemp >= tempAlertValue) {
+        $("#iconTemperature").css("color", "red");
+    } else if (currentTemp >= tempWarningValue) {
+        $("#iconTemperature").css("color", "orange");
+    } else {
+        $("#iconTemperature").css("color", "green");
+    }
+
+    if (currentHum <= humAlertValue) {
+        $("#iconHumidity").css("color", "sienna");
+    } else if (currentHum <= humWarningValue) {
+        $("#iconHumidity").css("color", "orange");
+    } else {
+        $("#iconHumidity").css("color", "green");
+    }
 }
 
 /**

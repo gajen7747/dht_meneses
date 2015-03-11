@@ -53,18 +53,18 @@
                         </p> 
                         <p title="Max Temperature in Celsius that triggers an Email Alert" class="input-group" style="width:100%">
                             <label class="input-group-addon  config-label" for="txtAlert_T_Trigger" style="width:200px; text-align: right">MAX TEMP ALERT:   </label>
-                            <input class="form-control" type="number" min="0" max="90" value="34"  id="txtAlert_T_Trigger">
+                            <input class="form-control" type="number" min="0" max="90" value="38"  id="txtAlert_T_Trigger">
                             <label class="input-group-addon" for="txtAlert_T_Trigger" style="width:1em; text-align: right; color:red"><i class="glyphicon glyphicon-fire"></i></label>
                         </p> 
                         <p title="Min Humidity % that triggers a visual warning" class="input-group" style="width:100%">
                             <label class="input-group-addon  config-label" for="txtWarning_H_Trigger" style="width:200px; text-align: right">MIN HUMIDITY WARN:   </label>
-                            <input class="form-control" type="number" min="20" max="80" value="50" id="txtWarning_H_Trigger">
+                            <input class="form-control" type="number" min="20" max="80" value="40" id="txtWarning_H_Trigger">
                             <label class="input-group-addon" for="txtWarning_H_Trigger" style="width:1em; text-align: right; color:orange"><i class="glyphicon glyphicon-tint"></i></label>
                         </p> 
                         <p title="Min Humidity % that triggers an Email Alert" class="input-group" style="width:100%">
                             <label class="input-group-addon config-label" for="txtAlert_H_Trigger" style="width:200px; text-align: right">MIN HUMIDITY ALERT:   </label>
-                            <input class="form-control" type="number" min="20" max="80" value="30"  id="txtAlert_H_Trigger">
-                            <label class="input-group-addon" for="txtAlert_H_Trigger" style="width:1em; text-align: right; color:blue"><i class="glyphicon glyphicon-tint"></i></label>
+                            <input class="form-control" type="number" min="20" max="80" value="38"  id="txtAlert_H_Trigger">
+                            <label class="input-group-addon" for="txtAlert_H_Trigger" style="width:1em; text-align: right; color:sienna"><i class="glyphicon glyphicon-tint"></i></label>
                         </p>  
                         <p class="input-group" style="width:100%"  title="Email address that will be notified">
                             <input class="form-control" type="email" id="txtAlertEmail" placeholder="type Alert email here">
@@ -99,14 +99,14 @@
 
                     <div class="panel panel-body panel-info" style="text-align: center">
                         <div class="col-md-6">
-                            <span id="val_H" style="font-size:3em">76</span>%<br>
-                            <i class="glyphicon glyphicon-tint" style="color:green; font-size: 3em"></i><br>
+                            <span id="val_H" style="font-size:3em">--</span>%<br>
+                            <i id="iconHumidity" class="glyphicon glyphicon-tint" style="color:gray; font-size: 3em"></i><br>
                             <span>HUMIDITY</span>
                         </div>
                         <div class="col-md-6">
-                            <span id="val_T" style="font-size:3em">28</span> C
+                            <span id="val_T" style="font-size:3em">--</span> C
                             <br>
-                            <i class="glyphicon glyphicon-fire" style="color:green; font-size: 3em"></i><br>
+                            <i id="iconTemperature" class="glyphicon glyphicon-fire" style="color:gray; font-size: 3em"></i><br>
                             <span>TEMPERATURE</span>
                         </div>   
                         <div class="small" id="created_datetime"></div>
