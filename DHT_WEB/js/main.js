@@ -1,4 +1,15 @@
+/**
+ * Function to be called by the system when everything is ready @ browser. 
+ */
 $(document).ready(function () {
+    configureEvents();
+});
+
+/**
+ * Configures behavior of each actionable control in the page.
+ * @returns {undefined}
+ */
+function configureEvents(){
     $("#btnBegin").click(function () {
         $("#btnBegin").hide();
         $("#btnStop").show();
@@ -6,18 +17,24 @@ $(document).ready(function () {
         beginCapture();
     }).removeAttr("disabled").text("BEGIN");
     
-    
-
     $("#btnStop").click(function () {
         stopFlag = true;
         $("#btnBegin").show();
         $("#btnStop").hide();
         $("#imgClock").hide();
-    });
+    });    
+}
 
-});
-
+/**
+ * Flag used to control the recurrent retrieval of information from pvCloud
+ * @type Boolean
+ */
 var stopFlag = false;
+
+/**
+ * Initiates and performs the recurrent capture of data from pvCloud
+ * @returns {undefined}
+ */
 function beginCapture() {
     $("#imgClock").hide();
     if (!stopFlag) {
@@ -35,6 +52,11 @@ function beginCapture() {
     }
 }
 
+/**
+ * Processes a response value coming from retrieving data from pvCloud
+ * @param {object} response
+ * @returns {undefined}
+ */
 function processValue(response) {
     var value = JSON.parse(response.vse_value);
     var created_datetime = response.created_datetime;
@@ -46,7 +68,11 @@ function processValue(response) {
     console.log(value);
 }
 
-
+/**
+ * Actually pefroms a Web Service Call to pvCloud to retrieve last value registered for the app.
+ * @param {type} callback
+ * @returns {undefined}
+ */
 function GetPVCLOUDValue(callback) {
     var url = BuildPVCloudURL_GetLastValue();
 
@@ -64,7 +90,10 @@ function GetPVCLOUDValue(callback) {
 
 }
 
-
+/**
+ * Crafts a URL with the necessary parameters for getting last value from pvCloud
+ * @returns {String}
+ */
 function BuildPVCloudURL_GetLastValue() {
     var api_key = "9c04d1bf0cb4b6409202b68495ebc06110011208";
     var device_id = 16;
