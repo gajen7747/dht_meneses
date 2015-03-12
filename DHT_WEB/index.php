@@ -4,24 +4,24 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>DHT 11 over the Cloud</title>
+        <meta charset="utf-8"> <!-- Tipo de caracteres -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <!-- Utilice la ultima version de HTML, sin compartibilidad backguards -->
+        <title>DHT 11 over the Cloud</title> <!-- Titulo pagina-->
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Size de las ventanas-->
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- Carga la hoja de estilos de bootstrap -Framework -->
         <style>
             body {
                 padding-top: 0;
                 padding-bottom: 20px;
             }
         </style>
-        <link rel="stylesheet" href="css/bootswatch-themes/flatly.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootswatch-themes/flatly.css"> <!-- Personalizacion del tema de bootstrap -->
+        <link rel="stylesheet" href="css/main.css"> <!-- Personalizacion de los botones y el tema -->
 
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script> <!-- Compatibilidad con browsers viejos que tengan versiones viejas de HTML -->
     </head>
     <body >
         <!-- HAPPY BROWSER -->
@@ -40,15 +40,15 @@
         <!--CONTENT-->
         <div class="container">
             <!-- UNIQUE ROW -->
-            <div class="row">
+            <div class="row"> <!-- Manera de acomodar la pagina bien en caso de que se comprima -->
                 <!-- FIRST FLUID COLUMN (CONFIGURATION) -->
-                <div class="col-md-4">
+                <div class="col-md-4"> <!-- Momento en que pasan de estar horizontales a verticales las columnas, md=medium (size tablet) -->
                     <h2>Configuration</h2>
                     <p  class="explanation">In this section you can provide the settings to be used as Temperature/Humidity alert triggers and email to be notified.</p>
                     <form>
                         <p title="Max Temperature in Celsius that triggers a visual warning" class="input-group" style="width:100%">
                             <label class="input-group-addon config-label" for="txtWarning_T_Trigger" style="width:200px; text-align: right">MAX TEMP WARNING:   </label>
-                            <input class="form-control" type="number" min="0" max="90" value="32"  id="txtWarning_T_Trigger">
+                            <input class="form-control" type="number" min="0" max="90" value="32"  id="txtWarning_T_Trigger"> <!-- type = number significa que se puede ingresar un numero -->
                             <label class="input-group-addon" for="txtWarning_T_Trigger" style="width:1em; text-align: right; color:orange"><i class="glyphicon glyphicon-fire"></i></label>
                         </p> 
                         <p title="Max Temperature in Celsius that triggers an Email Alert" class="input-group" style="width:100%">
@@ -87,7 +87,7 @@
                         </p>  
                     </form>
                     <p>
-                        <a id="btnBegin" class="btn btn-success pull-right" role="button" disabled >please wait...</a>
+                        <a id="btnBegin" class="btn btn-success pull-right" role="button" disabled >please wait...</a> <!-- Etiqueta a boton, alineado a la derecha -->
                         <img id="imgClock" class="pull-left" src="img/p19498-1231353003.gif" style="display:none; margin-left:20px; margin-top:5px; width:2em;"><a id="btnStop"  class="btn btn-danger pull-right" role="button" >STOP</a>
                     </p>
                 </div>
@@ -121,8 +121,8 @@
         </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
         
         <!--SCRIPTS-->
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>');</script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>');</script> <!-- Framework para faciltiar el uso de Javascript -->
         <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/main.js"></script> <!-- Apunta a la parte programatica -->
     </body>
 </html>
