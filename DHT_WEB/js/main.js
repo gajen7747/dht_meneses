@@ -80,7 +80,7 @@ function processResponse(response) {
         } else {
             $("#created_datetime").css("color", "green");
         }
-        
+
         processWarnings();
         console.log(diffsec);
 
@@ -88,18 +88,22 @@ function processResponse(response) {
     console.log(value);
 }
 
+var messageSent = false;
+var messageSentEmail = "";
 function processWarnings() {
-    var tempWarningValue = 1* $("#txtWarning_T_Trigger").val();
-    var tempAlertValue = 1* $("#txtAlert_T_Trigger").val();
-    var humWarningValue = 1* $("#txtWarning_H_Trigger").val();
-    var humAlertValue = 1* $("#txtAlert_H_Trigger").val();
-    var currentTemp = 1 *  $("#val_T").text();
+    var tempWarningValue = 1 * $("#txtWarning_T_Trigger").val();
+    var tempAlertValue = 1 * $("#txtAlert_T_Trigger").val();
+    var humWarningValue = 1 * $("#txtWarning_H_Trigger").val();
+    var humAlertValue = 1 * $("#txtAlert_H_Trigger").val();
+    var currentTemp = 1 * $("#val_T").text();
     var currentHum = 1 * $("#val_H").text();
 
-    console.log({currentTemp:currentTemp, currentHum:currentHum});
+    console.log({currentTemp: currentTemp, currentHum: currentHum});
     console.log({tempWarning: tempWarningValue, tempAlert: tempAlertValue, humWarning: humWarningValue, humAlert: humAlertValue});
-    
+
+    var message = "";
     if (currentTemp >= tempAlertValue) {
+        message += "TEMP ALERT (" + currentTemp + " >= " + tempAlertValue + ") ";
         $("#iconTemperature").css("color", "red");
     } else if (currentTemp >= tempWarningValue) {
         $("#iconTemperature").css("color", "orange");
@@ -109,11 +113,30 @@ function processWarnings() {
 
     if (currentHum <= humAlertValue) {
         $("#iconHumidity").css("color", "sienna");
+        if (message !== "")
+            message += " | ";
+        message += "HUMIDITY ALERT (" + currentHum + " <= " + humAlertValue + ") ";
     } else if (currentHum <= humWarningValue) {
         $("#iconHumidity").css("color", "orange");
     } else {
         $("#iconHumidity").css("color", "green");
     }
+
+    var email = $("#txtAlertEmail").val();
+
+    if (message !== "" && messageSentEmail !== email && email !== "") {
+        var url = "sendAlert.php?email=" + email + "&key=1&message=" + encodeURIComponent(message);
+        console.log("SENDING EMAIL...");
+        console.log(url);
+        $.ajax({
+            url: url,
+            success: function (response) {
+                messageSentEmail = email;
+                console.log("EMAIL SENT");
+            }
+        });
+    }
+
 }
 
 /**
