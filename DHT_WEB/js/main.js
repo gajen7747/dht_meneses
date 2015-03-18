@@ -165,14 +165,6 @@ function GetPVCLOUDValue(callback) { /** /   Llamada en el browser, todo en el m
  * @returns {String}
  */
 function BuildPVCloudURL_GetLastValue() {
-    var api_key = "9c04d1bf0cb4b6409202b68495ebc06110011208";
-    var device_id = 16; /** /    ID del Galileo */
-    var account_id = 1;
-
-    var url = "https://costaricamakers.com/pvcloud_backend/vse_get_value_last.php?account_id=" + account_id;
-    url += "&device_id=" + device_id;
-    url += "&api_key=" + api_key;
-    url += "&optional_label=DHT11_READING";
-
-    return url;
+    //Keeping Api Key and connection authentication data @ Server Side
+    return "ws_GetPVCloudData.php";
 }
