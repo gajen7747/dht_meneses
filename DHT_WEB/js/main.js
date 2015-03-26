@@ -58,33 +58,38 @@ function beginCapture() {
  * @returns {undefined}
  */
 function processResponse(response) {
-    var value = JSON.parse(response.vse_value); /** /  Pasa de tipo JSON (String) a un objeto Java. {T:20,H:60} --> value.H value.T   */
-    var created_datetime = response.created_datetime; /** /    created_datetime = atributo de pvCloud q se da como un string */
-    if (value) {
-        $("#val_T").html(value.t); /** /    Pasando los valores a la pagina */
-        $("#val_H").html(value.h);
+
+    if (response) {
+        var value = JSON.parse(response.vse_value); /** /  Pasa de tipo JSON (String) a un objeto Java. {T:20,H:60} --> value.H value.T   */
+        var created_datetime = response.created_datetime; /** /    created_datetime = atributo de pvCloud q se da como un string */
+        if (value) {
+            $("#val_T").html(value.t); /** /    Pasando los valores a la pagina */
+            $("#val_H").html(value.h);
 
 
-        var now = new Date();
-        var createdDateObj = new Date(created_datetime); /** /  pasa  created_datetime de string a date */
-        createdDateObj.setHours(createdDateObj.getHours() + 1); /** / Hora de creacion del registro */
-        console.log(now);
+            var now = new Date();
+            var createdDateObj = new Date(created_datetime); /** /  pasa  created_datetime de string a date */
+            createdDateObj.setHours(createdDateObj.getHours() + 1); /** / Hora de creacion del registro */
+            console.log(now);
 
-        console.log(createdDateObj);
-        $("#created_datetime").html(createdDateObj); /** / Asigna a #created_datetime el valor html de createdDateObj */
+            console.log(createdDateObj);
+            $("#created_datetime").html(createdDateObj); /** / Asigna a #created_datetime el valor html de createdDateObj */
 
-        var diffsec = (now - createdDateObj) / 1000;
+            var diffsec = (now - createdDateObj) / 1000;
 
-        if (diffsec > 60) {
-            $("#created_datetime").css("color", "red"); /** / No ha vuelto a recibir datos hace 60 seg, se pone en rojo */
-        } else {
-            $("#created_datetime").css("color", "green");
+            if (diffsec > 60) {
+                $("#created_datetime").css("color", "red"); /** / No ha vuelto a recibir datos hace 60 seg, se pone en rojo */
+            } else {
+                $("#created_datetime").css("color", "green");
+            }
+
+
+            console.log(diffsec);
+
         }
-
-        processWarnings();
-        console.log(diffsec);
-
     }
+
+    processWarnings();
     console.log(value);
 }
 
@@ -152,6 +157,8 @@ function GetPVCLOUDValue(callback) { /** /   Llamada en el browser, todo en el m
             callback(data); /** / Cuando tiene el dato, hace el callback y devuelve la info GetPVCLOUDValue, si no hay valores data es null  */
         },
         error: function (error) { /** / Error de comunicacion  */
+            console.log("ERROR OCCURRED");
+            callback(null);
             console.log(error);
             return null;
         }
