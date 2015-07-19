@@ -15,7 +15,11 @@ function configureEvents() {
         $("#btnStop").show();
         stopFlag = false;
         beginCapture();
-    }).removeAttr("disabled").text("BEGIN");
+    });
+    
+    $("#btnBegin").removeAttr("disabled");
+    
+    $("#btnBegin").text("BEGIN");
 
     $("#btnStop").click(function () {
         stopFlag = true;
